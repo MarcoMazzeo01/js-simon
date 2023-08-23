@@ -15,16 +15,17 @@ const msDay = 86400000
 function check() {
     
     const msDiff = goalMs - (new Date().getTime())
-    console.log(msDiff)
 
-    daysCount.innerHTML = Math.round(msDiff / msDay)
-    hoursCount.innerHTML = Math.round(msDiff / msHour)
-    minutesCount.innerHTML = Math.round((msDiff / msMin)) 
-    secondsCount.innerHTML = Math.round((msDiff / msSec)) 
+    let nDays = Math.floor(msDiff / msDay) % 24
+    let nSec = Math.floor(msDiff / msSec) % 60 
+    let nMin = Math.floor(msDiff / msMin) % 60
+    let nHr = Math.round(msDiff / msHour) % 60
 
+    daysCount.innerHTML = nDays
+    hoursCount.innerHTML = nHr
+    minutesCount.innerHTML = nMin
+    secondsCount.innerHTML = nSec
 
-    setTimeout(check,1000)
-}
+} 
 
-check()
-
+setInterval(check,1000)
